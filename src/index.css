@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@source "../node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}";
