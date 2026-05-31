@@ -39,13 +39,14 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col gap-6 pb-6">
+    // Bạn sửa lại dòng chứa div bao bọc ngoài cùng (khoảng dòng 26) thành:
+
+<div className="w-full h-full flex flex-col gap-6 pb-6 liquid-scrollbar">
       <h1 className="text-3xl font-bold text-slate-800 dark:text-white drop-shadow-sm">
         Tổng quan Hệ thống
       </h1>
 
-      {/* KHU VỰC 1: CÁC THẺ THỐNG KÊ (Giữ nguyên của bạn) */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 ">
         {cardStats.map((stat, index) => (
           <div
             key={index}
@@ -74,7 +75,6 @@ export default function DashboardPage() {
         ))}
       </div>
 
-      {/* KHU VỰC 2: BIỂU ĐỒ THỐNG KÊ */}
       <div className="flex-1 min-h-100 w-full p-6 rounded-4xl
                       bg-white/40 dark:bg-white/10 
                       backdrop-blur-xl 
@@ -82,13 +82,12 @@ export default function DashboardPage() {
                       shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none
                       flex flex-col gap-6">
         
-        {/* Phần Header của Biểu đồ chứa Title và Bộ lọc */}
+
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <h2 className="text-xl font-bold text-slate-800 dark:text-white">
             Biểu đồ Doanh thu & Lượt thuê
           </h2>
           
-          {/* Cụm Select lọc thời gian */}
           <div className="flex items-center gap-3 bg-white/50 dark:bg-black/20 p-1.5 rounded-2xl border border-white/50 dark:border-white/10">
             <MasterSelect
               options={SelectOptions}
@@ -107,11 +106,10 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Khung chứa Biểu đồ */}
+
         <div className="flex-1 w-full h-full">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={mockChartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-              {/* Định nghĩa màu Gradient cho biểu đồ để hợp với Glassmorphism */}
               <defs>
                 <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.5}/>
@@ -135,7 +133,6 @@ export default function DashboardPage() {
                 itemStyle={{ color: '#1e293b', fontWeight: 600 }}
               />
               
-              {/* Đường Line và Vùng đổ màu */}
               <Area 
                 type="monotone" 
                 dataKey="revenue" 

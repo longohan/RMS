@@ -3,3 +3,23 @@
 @variant dark (&:where(.dark, .dark *));
 
 @source "../node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}";
+
+@layer utilities {
+
+  .liquid-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+  }
+  .liquid-scrollbar {
+
+    scrollbar-width: none;
+    scrollbar-color: rgba(255, 255, 255, 0) transparent;
+  }
+}
+
+@layer utilities {
+  .fade-edge-top {
+    /* Tạo mặt nạ trong suốt ở khoảng 20px đầu tiên, sau đó là màu đen (hiển thị 100%) */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black 100%);
+  }
+}
