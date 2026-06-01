@@ -18,8 +18,114 @@
 
 @layer utilities {
   .fade-edge-top {
-    /* Tạo mặt nạ trong suốt ở khoảng 20px đầu tiên, sau đó là màu đen (hiển thị 100%) */
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 20px, black 100%);
+  }
+}
+
+@theme {
+/* Màu cho nền */
+  --color-bg-start: #E0C3FC;       /* Màu hồng/tím nhạt */
+  --color-bg-middle: #8EC5FC;      /* Màu xanh biển nhạt */
+  --color-bg-end: #E2F0D9;         /* Màu xanh lá mờ */
+  --color-layout-text: #111827;    /* text-gray-900 */
+
+/* Màu cho Chế độ sáng tối */
+  --color-switch-bg: rgba(229, 231, 235, 0.5);       /* bg-gray-200/50 */
+  --color-switch-border: rgba(209, 213, 219, 0.5);   /* border-gray-300/50 */
+  --color-switch-thumb: #ffffff; 
+  --color-switch-sun: #f59e0b;
+  --color-switch-moon: #818cf8;
+  
+  /* Màu Button solid */
+  --color-btn-solid: #2563eb;              /* bg-blue-600 */
+  --color-btn-solid-hover: #1d4ed8;        /* hover:bg-blue-700 */
+
+  /* Màu Button glass */
+  --color-btn-glass-bg: rgba(255, 255, 255, 0.2);    /* bg-white/20 */
+  --color-btn-glass-hover: rgba(255, 255, 255, 0.3); /* hover:bg-white/30 */
+  --color-btn-glass-text: #111827;                   /* text-gray-900 */
+  --color-btn-glass-border: rgba(255, 255, 255, 0.3);/* border-white/30 */
+
+  /* Màu Button liquid */
+  --color-liquid-from: rgba(96, 165, 250, 0.3);      /* from-blue-400/30 */
+  --color-liquid-via: rgba(192, 132, 252, 0.2);       /* via-purple-400/20 */
+  --color-liquid-to: rgba(244, 114, 182, 0.2);        /* to-pink-400/20 */
+  
+  --color-liquid-from-hover: rgba(96, 165, 250, 0.4);/* hover:from-blue-400/40 */
+  --color-liquid-via-hover: rgba(192, 132, 252, 0.3); /* hover:via-purple-400/30 */
+  --color-liquid-to-hover: rgba(244, 114, 182, 0.3);  /* hover:to-pink-400/30 */
+  --color-liquid-border: rgba(255, 255, 255, 0.4);   /* border-white/40 */
+  
+  /* Màu cho Card hiện số liệu */
+  --color-card-bg: rgba(255, 255, 255, 0.4);         /* bg-white/40 */
+  --color-card-border: rgba(255, 255, 255, 0.6);     /* border-white/60 */
+  
+  --color-card-icon-bg: rgba(255, 255, 255, 0.7);    /* bg-white/70 */
+  --color-card-icon-border: rgba(255, 255, 255, 0.8);/* border-white/80 */
+
+  --color-card-title: #1e293b;                       /* text-slate-800*/
+  --color-card-text: #64748b;                        /* text-slate-500 */
+
+  /* Màu cho Input */
+  --color-input-bg: rgba(255, 255, 255, 0.5);       /* Màu  bg-white/50 */
+  --color-input-icon: #64748b;                       /* Màu icon mặc định */
+  --color-input-error: #ef4444;                      /* Màu báo lỗi */
+
+  /* Màu cho biểu đồ  */
+  --color-chart-accent: #1d4ed8;                     
+  --color-chart-grid: rgba(100, 116, 139, 0.4);      /* Màu xám Slate 500 có độ mờ */
+  --color-chart-text: #475569;
+
+}
+
+@layer base {
+  .dark {
+    /* Màu cho nền chế độ tối */
+    --color-bg-start: #0f172a;     
+    --color-bg-middle: #1e293b;   
+    --color-bg-end: #020617;      
+    --color-layout-text: #f3f4f6; 
+
+    /* Màu cho Chế độ sáng tối ở chế độ tối */
+    --color-switch-bg: rgba(0, 0, 0, 0.4);            /* dark:bg-black/40 */
+    --color-switch-border: rgba(55, 65, 81, 0.5);     /* dark:border-gray-700/50 */
+    --color-switch-thumb: #4b5563;                     /* dark:bg-gray-600 */
+    
+    /* Màu Button glass */
+    --color-btn-glass-bg: rgba(255, 255, 255, 0.1);    /* bg-white/10 */
+    --color-btn-glass-hover: rgba(255, 255, 255, 0.2); /* hover:bg-white/20 */
+    --color-btn-glass-text: #f3f4f6;                   /* text-gray-100 */
+    --color-btn-glass-border: rgba(255, 255, 255, 0.2);/* border-white/20 */
+
+    /* Màu Button liquid */
+    --color-liquid-from: rgba(59, 130, 246, 0.3);      /* from-blue-500/30 */
+    --color-liquid-via: rgba(168, 85, 247, 0.2);       /* via-purple-500/20 */
+    --color-liquid-to: rgba(236, 72, 153, 0.2);        /* to-pink-500/20 */
+    
+    --color-liquid-from-hover: rgba(59, 130, 246, 0.4);/* xanh mờ */
+    --color-liquid-via-hover: rgba(168, 85, 247, 0.3); /* tím mờ */
+    --color-liquid-to-hover: rgba(236, 72, 153, 0.3);  /* hồng mờ */
+       
+
+    /* Màu cho Input chế độ tối */
+    --color-input-bg: rgba(0, 0, 0, 0.2);            /* dark:bg-black/20 trong code cũ */
+    --color-input-icon: #94a3b8;
+    --color-input-error: #f87171;
+
+    /* Màu cho Card hiện số liệu chế độ tối */
+    --color-card-bg: rgba(255, 255, 255, 0.1);       /* dark:bg-white/10 cũ */
+    --color-card-border: rgba(255, 255, 255, 0.2);   /* dark:border-white/20 cũ */
+    
+    --color-card-icon-bg: rgba(255, 255, 255, 0.2);  /* dark:bg-white/20 cũ */
+    --color-card-icon-border: rgba(255, 255, 255, 0.1);/* dark:border-white/10 cũ */
+
+    --color-card-title: #ffffff;                     /* dark:text-white cũ */
+    --color-card-text: #94a3b8;                      /* dark:text-slate-400 cũ */
+
+    /* Màu cho biểu đồ chế dộ tối*/
+    --color-chart-accent: #94a3b8;                   
+    --color-chart-grid: rgba(59, 130, 246, 0.6);
+    --color-chart-text: #cbd5e1;
   }
 }

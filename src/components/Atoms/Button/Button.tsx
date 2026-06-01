@@ -1,4 +1,3 @@
-import { useTheme } from "next-themes";
 import type { ReactNode } from "react";
 
 interface Props {
@@ -26,25 +25,20 @@ export default function Button({
     iconPosition = "left",
     children,
 }: Props) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
 
-    // Size mapping
     const sizeClasses = {
         sm: "px-3 py-2 text-sm",
         md: "px-6 py-3 text-base",
         lg: "px-8 py-4 text-lg",
     };
 
-    // Variant styles
+    // Variant màu đã được rút gọn bằng class hệ thống mới
     const variantClasses = {
-        solid: "bg-blue-600 hover:bg-blue-700 text-white",
-        glass: isDark
-            ? "bg-white/10 backdrop-blur-md hover:bg-white/20 text-gray-100 border border-white/20"
-            : "bg-white/20 backdrop-blur-md hover:bg-white/30 text-gray-900 border border-white/30",
-        liquidGlass: isDark
-            ? "bg-gradient-to-br from-blue-500/30 via-purple-500/20 to-pink-500/20 backdrop-blur-xl hover:from-blue-500/40 hover:via-purple-500/30 hover:to-pink-500/30  shadow-purple-500/20"
-            : "bg-gradient-to-br from-blue-400/30 via-purple-400/20 to-pink-400/20 backdrop-blur-xl hover:from-blue-400/40 hover:via-purple-400/30 hover:to-pink-400/30 text-white border border-white/40 shadow-lg hover:shadow-xl shadow-purple-400/20",
+        solid: "bg-btn-solid hover:bg-btn-solid-hover text-white",
+        
+        glass: "bg-btn-glass-bg hover:bg-btn-glass-hover text-btn-glass-text border border-btn-glass-border backdrop-blur-md",
+        
+        liquidGlass: "bg-gradient-to-br from-liquid-from via-liquid-via to-liquid-to hover:from-liquid-from-hover hover:via-liquid-via-hover hover:to-liquid-to-hover text-white border border-liquid-border backdrop-blur-xl shadow-lg hover:shadow-xl shadow-purple-500/20",
     };
 
     const disabledClasses = disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer";

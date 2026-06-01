@@ -59,7 +59,7 @@ export default function Input({
         <div className="flex flex-col gap-1 w-full">
             <div className="relative">
                 {icon && iconPosition === "left" && (
-                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-input-icon">
                         {icon}
                     </div>
                 )}
@@ -73,7 +73,7 @@ export default function Input({
                     minLength={minLength}
                     onChange={handlechecklength}
                     onBlur={handlechecklength}
-                    className={`w-full py-3 rounded-lg bg-white/50 dark:bg-black/20  ${icon
+                    className={`w-full py-3 rounded-lg bg-input-bg ${icon
                             ? iconPosition === "left"
                                 ? "pl-11 pr-4"
                                 : "pl-4 pr-11"
@@ -81,7 +81,7 @@ export default function Input({
                         } ${type === "password" ? "pr-12!" : ""} ${className}`}
                 />
                 {icon && iconPosition === "right" && (
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-input-icon">
                         {icon}
                     </div>
                 )}
@@ -95,7 +95,7 @@ export default function Input({
                     </button>
                 )}
             </div>
-            {Error && <span className="text-red-500 text-sm ml-1 mt-1">{Error}</span>}
+            {Error && <span className="text-input-error text-sm ml-1 mt-1">{Error}</span>}
         </div>
     );
 }
