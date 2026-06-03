@@ -77,6 +77,87 @@
   --color-chart-grid: rgba(100, 116, 139, 0.4);      /* Màu xám Slate 500 có độ mờ */
   --color-chart-text: #475569;
 
+  /* Màu cho Master Select (Dropdown) */
+  --color-select-bg: rgba(255, 255, 255, 0.2);        /* bg-white/40 */
+  --color-select-hover: rgba(255, 255, 255, 0.5);     /* bg-white/50 */
+  --color-select-border: rgba(255, 255, 255, 0.6);    /* border-white/60 */
+  --color-select-text: #1e293b;                       /* text-slate-800 */
+  --color-select-icon: #64748b;                       /* text-slate-500 */
+  
+  --color-select-menu-bg: rgba(255, 255, 255, 0.1);   /* Nền menu sổ xuống */
+  --color-select-menu-border: rgba(255, 255, 255, 0.8);
+  
+  --color-select-active-bg: rgba(255, 255, 255, 0.9); /* Nền item đang được chọn */
+  --color-select-active-text: #0f172a;                /* text-slate-900 */
+  
+  --color-select-item-text: #475569;                  /* text-slate-600 */
+  --color-select-item-hover: rgba(255, 255, 255, 0.15);
+
+  /* màu cho modal */
+  --color-modal-danger-bg: rgba(239, 68, 68, 0.1);     /* đỏ nhạt kính mờ */
+  --color-modal-danger-icon: #dc2626;
+  --color-modal-danger-border: rgba(239, 68, 68, 0.2);
+  --color-modal-danger-btn: #ef4444;
+  --color-modal-danger-btn-hover: #dc2626;
+
+  --color-modal-warning-bg: rgba(245, 158, 11, 0.1);   /* vàng nhạt kính mờ */
+  --color-modal-warning-icon: #d97706;
+  --color-modal-warning-border: rgba(245, 158, 11, 0.2);
+  --color-modal-warning-btn: #f59e0b;
+  --color-modal-warning-btn-hover: #d97706;
+
+  --color-modal-info-bg: rgba(59, 130, 246, 0.1);      /* xanh nhạt kính mờ */
+  --color-modal-info-icon: #2563eb;
+  --color-modal-info-border: rgba(59, 130, 246, 0.2);
+  --color-modal-info-btn: #3b82f6;
+  --color-modal-info-btn-hover: #2563eb;
+  
+
+  /* màu cho các card ở trang thanh toán */
+  /* Trạng thái 0: Đang chờ thanh toán */
+  --color-invoice-pending-bg: rgba(245, 158, 11, 0.1);   /* bg-amber-500/10 */
+  --color-invoice-pending-text: #d97706;                  /* text-amber-600 */
+  --color-invoice-pending-border: rgba(245, 158, 11, 0.2);/* border-amber-500/20 */
+  --color-invoice-pending-icon: rgba(245, 158, 11, 0.9);
+  /* Trạng thái 1: Đã trả*/
+  --color-invoice-paid-bg: rgba(16, 185, 129, 0.1);      /* bg-emerald-500/10 */
+  --color-invoice-paid-text: #059669;                    /* text-emerald-600 */
+  --color-invoice-paid-border: rgba(16, 185, 129, 0.2);  /* border-emerald-500/20 */
+  --color-invoice-paid-icon: rgba(16, 185, 129, 0.9);   /* Màu icon chìm phía sau */
+
+  /* Trạng thái 2: Quá hạn */
+  --color-invoice-overdue-bg: rgba(239, 68, 68, 0.1);     /* bg-red-500/10 */
+  --color-invoice-overdue-text: #dc2626;                  /* text-red-600 */
+  --color-invoice-overdue-border: rgba(239, 68, 68, 0.2); /* border-red-500/20 */
+  --color-invoice-overdue-icon: rgba(239, 68, 68, 0.9);
+
+  /* ==========================================================================
+     THÊM MỚI: TOKENS MÀU SẮC DỊCH VỤ / UTILITIES (CHẾ ĐỘ SÁNG)
+     ========================================================================== */
+  /* Điện (Electricity - Amber) */
+  --color-service-electricity-bg: rgba(245, 158, 11, 0.1);    /* bg-amber-500/10 */
+  --color-service-electricity-text: #d97706;                  /* text-amber-600 */
+  --color-service-electricity-border: rgba(245, 158, 11, 0.2);/* border-amber-500/20 */
+
+  /* Nước (Water - Blue) */
+  --color-service-water-bg: rgba(59, 130, 246, 0.1);          /* bg-blue-500/10 */
+  --color-service-water-text: #2563eb;                        /* text-blue-600 */
+  --color-service-water-border: rgba(59, 130, 246, 0.2);      /* border-blue-500/20 */
+
+  /* Internet (Purple) */
+  --color-service-internet-bg: rgba(168, 85, 247, 0.1);        /* bg-purple-500/10 */
+  --color-service-internet-text: #7c3aed;                      /* text-purple-600 */
+  --color-service-internet-border: rgba(168, 85, 247, 0.2);    /* border-purple-500/20 */
+
+  /* Rác (Trash - Emerald) */
+  --color-service-trash-bg: rgba(16, 185, 129, 0.1);          /* bg-emerald-500/10 */
+  --color-service-trash-text: #059669;                        /* text-emerald-600 */
+  --color-service-trash-border: rgba(16, 185, 129, 0.2);      /* border-emerald-500/20 */
+
+  /* Khác (Other - Slate) */
+  --color-service-other-bg: rgba(100, 116, 139, 0.1);          /* bg-slate-500/10 */
+  --color-service-other-text: #475569;                        /* text-slate-600 */
+  --color-service-other-border: rgba(100, 116, 139, 0.2);      /* border-slate-500/20 */
 }
 
 @layer base {
@@ -127,5 +208,73 @@
     --color-chart-accent: #94a3b8;                   
     --color-chart-grid: rgba(59, 130, 246, 0.6);
     --color-chart-text: #cbd5e1;
+
+    --color-item-chart-1: #10b981;
+    --color-item-chart-2: #3b82f6;
+    --color-item-chart-3: #f97316;
+    --color-item-chart-4: #059669;
+    --color-item-chart-5: #8b5cf6;
+
+    /* Màu cho Master Select ở chế độ tối */
+    --color-select-bg: rgba(255, 255, 255, 0.1);          /* dark:bg-white/10 */
+    --color-select-hover: rgba(255, 255, 255, 0.15);      /* Nền sáng lên một chút khi hover */
+    --color-select-border: rgba(255, 255, 255, 0.2);      /* dark:border-white/20 */
+    --color-select-text: #f3f4f6;                         /* dark:text-gray-100 */
+    --color-select-icon: #94a3b8;                         /* dark:text-slate-400 */
+    
+    --color-select-menu-bg: rgba(15, 23, 42, 0.7);        /* Nền menu tối dạng kính mờ */
+    --color-select-menu-border: rgba(255, 255, 255, 0.15);
+    
+    --color-select-active-bg: rgba(255, 255, 255, 0.2);   /* Nền item đang được chọn */
+    --color-select-active-text: #ffffff;                  /* Chữ trắng tinh */
+    
+    --color-select-item-text: #cbd5e1;                    /* dark:text-slate-300 */
+    --color-select-item-hover: rgba(255, 255, 255, 0.1);
+
+    /* màu cho modal */
+    --color-modal-danger-bg: rgba(248, 113, 113, 0.15);  /* Kính mờ đỏ thẫm */
+    --color-modal-danger-icon: #f87171;
+    --color-modal-danger-border: rgba(248, 113, 113, 0.25);
+    --color-modal-danger-btn: #dc2626;
+    --color-modal-danger-btn-hover: #b91c1c;
+
+    --color-modal-warning-bg: rgba(251, 191, 36, 0.15);  /* Kính mờ cam thẫm */
+    --color-modal-warning-icon: #fbbf24;
+    --color-modal-warning-border: rgba(251, 191, 36, 0.25);
+    --color-modal-warning-btn: #d97706;
+    --color-modal-warning-btn-hover: #b45309;
+
+    --color-modal-info-bg: rgba(96, 165, 250, 0.15);     /* Kính mờ xanh thẫm */
+    --color-modal-info-icon: #60a5fa;
+    --color-modal-info-border: rgba(96, 165, 250, 0.25);
+    --color-modal-info-btn: #2563eb;
+    --color-modal-info-btn-hover: #1d4ed8;
+
+    /* Màu cho các dịch vụ cho trang dịch vụ */
+    /* Điện  */
+    --color-service-electricity-bg: rgba(251, 191, 36, 0.15);
+    --color-service-electricity-text: #fbbf24;
+    --color-service-electricity-border: rgba(251, 191, 36, 0.25);
+
+    /* Nước*/
+    --color-service-water-bg: rgba(96, 165, 250, 0.15);
+    --color-service-water-text: #60a5fa;
+    --color-service-water-border: rgba(96, 165, 250, 0.25);
+
+    /* Internet  */
+    --color-service-internet-bg: rgba(192, 132, 252, 0.15);
+    --color-service-internet-text: #c084fc;
+    --color-service-internet-border: rgba(192, 132, 252, 0.25);
+
+    /* Rác */
+    --color-service-trash-bg: rgba(52, 211, 153, 0.15);
+    --color-service-trash-text: #34d399;
+    --color-service-trash-border: rgba(52, 211, 153, 0.25);
+
+    /* Khác */
+    --color-service-other-bg: rgba(148, 163, 184, 0.15);
+    --color-service-other-text: #94a3b8;
+    --color-service-other-border: rgba(148, 163, 184, 0.25);
+
   }
 }

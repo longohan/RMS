@@ -46,7 +46,7 @@ export default function GlassDateRangePicker({ dateRange, onChange }: GlassDateR
 
             {isOpen && (
                 <div className="absolute right-0 mt-2 z-50 p-6
-                        w-max bg-white/40 dark:bg-black/60 
+                        w-max bg-white/70 dark:bg-black/60 
                         rounded-3xl
                         ">
                     <DayPicker

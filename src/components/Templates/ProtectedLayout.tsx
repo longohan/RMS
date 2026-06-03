@@ -12,13 +12,13 @@ export default function DashboardPage() {
 
   return (
 
-    <div className="flex w-full h-screen p-4 gap-6 overflow-hidden bg-linear-to-tr from-bg-start via-bg-middle to-bg-end">
+    <div className="flex w-full h-screen p-4 pt-1 pb-0 gap-6 overflow-hidden bg-linear-to-tr from-bg-start via-bg-middle to-bg-end">
       
-      <div className="shrink-0">
+      <div className="shrink-0 pt-3 pb-4">
         <Sidebar onLogout={logout} />
       </div>
 
-      <main className="flex-1 h-full overflow-y-auto pr-2 pt-1 flex flex-col gap-6 fade-edge-top liquid-scrollbar text-layout-text">
+      <main className="flex-1 h-full overflow-y-auto pr-2 pt-1 flex flex-col gap-6 liquid-scrollbar text-layout-text">
         <div>
           <ThemeSwitcher />
         </div>
