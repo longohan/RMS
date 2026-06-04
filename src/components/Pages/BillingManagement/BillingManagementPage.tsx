@@ -4,7 +4,7 @@ import MasterSearch from "@/components/Atoms/Search/MasterSearch";
 import MasterTable, { type TableColumn } from "@/components/Organisms/Table/MasterTable";
 import MasterForm, { type FormField } from "@/components/Organisms/Form/MasterForm";
 import { InvoiceStatus, type InvoiceStatusType, MOCK_INVOICES } from "@/constants/constants";
-
+import { useNotificationStore } from "@/store/useNotificationStore";
 interface InvoiceData {
   id: string;
   roomNumber: string;
@@ -39,6 +39,9 @@ export default function BillingManagementPage() {
     const [activeFilter, setActiveFilter] = useState<InvoiceStatusType | "All">("All");
     const [isFormOpen, setIsFormOpen] = useState(false);
 
+    const removeOverdue = useNotificationStore((state) => state.removeOverdue);
+
+
     const metrics = useMemo(() => {
         return {
             paid: invoices.filter((inv) => inv.status === InvoiceStatus.Paid).length,
@@ -71,10 +74,13 @@ export default function BillingManagementPage() {
         setIsFormOpen(false);
     };
 
-    const handleUpdateStatus = (id: string, newStatus: InvoiceStatusType) => {
+        const handleUpdateStatus = (id: string, newStatus: InvoiceStatusType) => {
         setInvoices((prev) =>
-            prev.map((inv) => (inv.id === id ? { ...inv, status: newStatus } : inv))
+            prev.map((inv) => (inv.id === id ? { ...inv, status: newStatus , } : inv))
         );
+        if (newStatus === InvoiceStatus.Paid) {
+            removeOverdue(id);
+        }
     };
 
     const columns: TableColumn<InvoiceData>[] = [

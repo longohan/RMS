@@ -6,7 +6,7 @@ interface MasterSearchProps {
   placeholder?: string;
 }
 
-export default function MasterSearch({ searchQuery, onSearchChange, placeholder = "Search..." }: MasterSearchProps) {
+export default function MasterSearch({ searchQuery, onSearchChange, placeholder = "Tìm kiếm" }: MasterSearchProps) {
   return (
     <div className="flex-1 flex items-center gap-3 px-4 py-2.5 rounded-2xl w-full
                     bg-input-bg backdrop-blur-md border border-card-border

@@ -25,7 +25,6 @@ export default function MasterSelect({
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
-  // Tự động đóng dropdown khi click ra ngoài màn hình
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
@@ -38,8 +37,6 @@ export default function MasterSelect({
 
   const selectedOption = options.find((opt) => String(opt.value) === String(value));
 
-  // --- BỘ CSS CHUẨN MẶC CÓ SẴN VIỀN, NỀN CỦA DROPDOWN ---
-  // Đảm bảo không truyền className từ form thì nút vẫn có viền bo góc tròn trịa cực đẹp
   const defaultSelectClasses = `
     flex items-center justify-between gap-2
     w-full px-4 py-2.5 

@@ -32,7 +32,6 @@ export default function Button({
         lg: "px-8 py-4 text-lg",
     };
 
-    // Variant màu đã được rút gọn bằng class hệ thống mới
     const variantClasses = {
         solid: "bg-btn-solid hover:bg-btn-solid-hover text-white",
         
