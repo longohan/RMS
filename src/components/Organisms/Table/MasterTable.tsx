@@ -21,7 +21,7 @@ export default function MasterTable<T>({
   emptyMessage = "No data available." 
 }: MasterTableProps<T>) {
   return (
-    <div className="w-full overflow-x-auto rounded-3xl bg-card-bg backdrop-blur-xl border border-card-border shadow-sm liquid-scrollbar">
+    <div className="w-full max-h-[457px] overflow-x-auto rounded-3xl bg-card-bg backdrop-blur-xl border border-card-border shadow-sm liquid-scrollbar">
       <table className="w-full text-sm text-left">
         <thead className="text-xs uppercase font-bold text-card-text border-b border-card-border bg-black/5 dark:bg-white/5">
           <tr>
@@ -52,7 +52,6 @@ export default function MasterTable<T>({
                     key={colIndex} 
                     className={`px-6 py-4 ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'}`}
                   >
-                    {/* Nếu có hàm cell custom thì render cell, nếu không thì in ra giá trị thô từ accessorKey */}
                     {col.cell ? col.cell(row) : (col.accessorKey ? String(row[col.accessorKey] || "—") : "—")}
                   </td>
                 ))}

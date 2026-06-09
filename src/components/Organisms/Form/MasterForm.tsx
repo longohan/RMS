@@ -97,7 +97,7 @@ export default function MasterForm<T>({
           return rules.max.message;
         }
       } 
-      // Kiểm tra dành cho kiểu dữ liệu CHỮ/TEXT/TEXTAREA
+
       else {
         const strValue = String(value);
         if (rules.minLength && strValue.length < rules.minLength.value) {

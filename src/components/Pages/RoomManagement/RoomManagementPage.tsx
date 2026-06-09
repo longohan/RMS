@@ -1,12 +1,15 @@
 // src/components/Pages/RoomManagement/RoomManagementPage.tsx
 import { useState } from "react";
-import { Plus, DoorClosed, UserPlus, Edit2, Trash2 } from "lucide-react";
+import { Plus, DoorClosed, UserPlus, Edit2, Trash2, Box, Eye } from "lucide-react";
 import MasterSearch from "@/components/Atoms/Search/MasterSearch";
 import MasterTable, { type TableColumn } from "@/components/Organisms/Table/MasterTable";
 import MasterForm, { type FormField } from "@/components/Organisms/Form/MasterForm";
 import { RoomStatus, type RoomStatusType, RoomType, type RoomTypeValue } from "@/constants/constants";
 import { MOCK_ROOMS } from "@/constants/constants";
+import Button from "@/components/Atoms/Button/Button";
 import ConfirmModal from "@/components/Molecules/Modal/ConfirmModal";
+import Room3DViewer from "@/components/Organisms/Room3DViewer/Room3DViewer";
+import Room3dModel from "@/components/Organisms/Room3DViewer/Room3dModel";
 
 interface RoomData {
     id: string;
@@ -60,6 +63,8 @@ export default function RoomManagementPage() {
     const [isAddTenantOpen, setIsAddTenantOpen] = useState(false);
     const [selectedRoom, setSelectedRoom] = useState<RoomData | null>(null);
     const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+    const [viewing3DRoom, setViewing3DRoom] = useState<RoomData | null>(null);
+    const [viewMode, setViewMode] = useState<'real' | 'sketch'>('real');
 
 
     const filteredRooms = rooms.filter(room => {
@@ -85,7 +90,7 @@ export default function RoomManagementPage() {
         setIsAddTenantOpen(true);
     };
 
-        const isEditMode = !!selectedRoom;
+    const isEditMode = !!selectedRoom;
     const roomDefaultValues = selectedRoom ? {
         roomNumber: selectedRoom.roomNumber,
         basePrice: selectedRoom.price,
@@ -135,23 +140,42 @@ export default function RoomManagementPage() {
         setIsAddTenantOpen(false);
         setSelectedRoom(null);
     };
-    
+
 
 
 
     const handleDeleteRoom = () => {
         if (!selectedRoom) return;
-        
+
 
         setRooms(prevRooms => prevRooms.filter(r => r.id !== selectedRoom.id));
-        
+
 
         setIsDeleteConfirmOpen(false);
         setSelectedRoom(null);
     };
 
     const roomColumns: TableColumn<RoomData>[] = [
-        { header: "Phòng", cell: (room) => <span className="font-bold text-blue-600 dark:text-blue-400">{room.roomNumber}</span> },
+        {
+            header: "Phòng", cell: (room) =>
+                <div className="flex gap-1.5">
+                    <span className="font-extrabold text-layout-text text-base">
+                        {room.roomNumber}
+                    </span>
+
+                    <button
+                        onClick={() => {
+                            setViewing3DRoom(room);
+                            setViewMode('real');
+                        }}
+                        className="inline-flex items-center gap-1.5 text-[11px] font-bold bg-blue-50 text-blue-600 border border-blue-200 px-2 py-1 rounded-lg hover:bg-blue-600 hover:text-white transition-all w-max shadow-sm hover:shadow-md dark:bg-blue-900/30 dark:border-blue-800 dark:text-blue-400 dark:hover:bg-blue-500 dark:hover:text-white"
+                        title={`Xem mô hình 3D của phòng ${room.roomNumber}`}
+                    >
+                        <Box size={14} />
+                        XEM 3D
+                    </button>
+                </div>
+        },
         { header: "Nguời thuê", cell: (room) => room.tenantName ? <span className="font-semibold text-layout-text">{room.tenantName}</span> : <span className="text-card-text">—</span> },
         { header: "Giá / Tháng", align: "center", cell: (room) => <span className="font-semibold text-blue-600 dark:text-blue-400">{new Intl.NumberFormat("vi-VN").format(room.price)} VND</span> },
         {
@@ -200,11 +224,11 @@ export default function RoomManagementPage() {
                     <button onClick={() => handleOpenEditRoom(room)} className="p-2 bg-card-icon-bg border border-card-icon-border text-card-text hover:text-blue-500 rounded-xl transition-all hover:bg-white dark:hover:bg-gray-800 cursor-pointer">
                         <Edit2 size={16} />
                     </button>
-                    <button 
+                    <button
                         onClick={() => {
                             setSelectedRoom(room);
                             setIsDeleteConfirmOpen(true);
-                        }} 
+                        }}
                         className="p-2 bg-card-icon-bg border border-card-icon-border text-card-text hover:text-red-500 rounded-xl transition-all hover:bg-white dark:hover:bg-gray-800 cursor-pointer"
                     >
                         <Trash2 size={16} />
@@ -215,7 +239,7 @@ export default function RoomManagementPage() {
     ];
 
     const addRoomFields: FormField<AddRoomFormData>[] = [
-        { name: "roomNumber", label: "Số Phòng", type: "text", placeholder: "Nhập tên phòng", column: 1, rules: { required: { value: true, message: "Vui lòng nhập tên phòng" }, minLength: { value: 3, message: "Tên phòng tối thiểu 3 ký tự" }, maxLength: {value: 5, message: "Tên phòng tối đa 5 ký tự"} } },
+        { name: "roomNumber", label: "Số Phòng", type: "text", placeholder: "Nhập tên phòng", column: 1, rules: { required: { value: true, message: "Vui lòng nhập tên phòng" }, minLength: { value: 3, message: "Tên phòng tối thiểu 3 ký tự" }, maxLength: { value: 5, message: "Tên phòng tối đa 5 ký tự" } } },
         { name: "status", label: "Trạng Thái", type: "select", options: isEditMode ? filterState.filter((state) => state.value !== "All") : filterState.filter((state) => state.value === RoomStatus.Maintenance || state.value === RoomStatus.Available), placeholder: "Chọn trạng thái", column: 1, rules: { required: { value: true, message: "Vui lòng chọn trạng thái" } } },
         { name: "basePrice", label: "Giá Phòng (Tháng)", type: "number", placeholder: "Nhập giá phòng", hideSpin: true, unit: "VND", column: 1, rules: { required: { value: true, message: "Vui lòng nhập giá phòng" }, min: { value: 100000, message: "Giá quá thấp" }, max: { value: 100000000, message: "Giá quá cao" } } },
         { name: "typeRoom", label: "Loại Phòng", type: "select", options: typeRoomState, placeholder: "Chọn loại phòng", column: 1, rules: { required: { value: true, message: "Vui lòng chọn loại phòng" } } },
@@ -231,18 +255,18 @@ export default function RoomManagementPage() {
     ];
 
     return (
-        
-        <div className="w-full h-full flex flex-col gap-6 pb-6">
+
+        <div className="w-full h-full  flex flex-col gap-5">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                     <h1 className="text-3xl font-bold text-card-title drop-shadow-sm">Quản Lý Phòng</h1>
                 </div>
-                <button
+                <Button
                     onClick={handleOpenAddRoom}
-                    className="flex items-center gap-2 bg-btn-solid hover:bg-btn-solid-hover text-white px-5 py-2.5 rounded-2xl font-bold shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
+                    variant="volumetric"
                 >
                     <Plus size={20} /> Thêm Phòng
-                </button>
+                </Button>
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-4 p-2 bg-card-bg backdrop-blur-xl border border-card-border rounded-[20px] shadow-sm">
@@ -309,13 +333,76 @@ export default function RoomManagementPage() {
                     setIsDeleteConfirmOpen(false);
                     setSelectedRoom(null);
                 }}
-                onConfirm={handleDeleteRoom} 
+                onConfirm={handleDeleteRoom}
                 title="Xóa Phòng"
                 message={`Bạn có chắc chắn muốn xóa phòng ${selectedRoom?.roomNumber || ""} không?`}
                 confirmText="Xóa Phòng"
                 cancelText="Hủy Bỏ"
                 variant="danger"
             />
+            {viewing3DRoom && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 sm:p-6">
+                    <div className="bg-card-bg w-full max-w-5xl rounded-[2rem] overflow-hidden shadow-2xl border border-card-border relative flex flex-col">
+
+                        {/* Header của Modal */}
+                        <div className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-card-border bg-card-bg/50">
+                            <div>
+                                <h3 className="text-xl font-bold text-card-title">
+                                    Không gian 3D - Phòng {viewing3DRoom.roomNumber}
+                                </h3>
+                                <p className="text-sm text-card-text">
+                                    Dùng chuột để xoay và cuộn để zoom không gian
+                                </p>
+                            </div>
+
+                            {/* TABS CHUYỂN ĐỔI CHẾ ĐỘ XEM CHUYÊN NGHIỆP */}
+                            <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl w-fit border border-card-border">
+                                <button
+                                    onClick={() => setViewMode('real')}
+                                    className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                                        viewMode === 'real'
+                                            ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                                            : 'text-card-text hover:text-layout-text'
+                                    }`}
+                                >
+                                    <Eye size={14} />
+                                    MÔ HÌNH THỰC TẾ
+                                </button>
+                                <button
+                                    onClick={() => setViewMode('sketch')}
+                                    className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                                        viewMode === 'sketch'
+                                            ? 'bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                                            : 'text-card-text hover:text-layout-text'
+                                    }`}
+                                >
+                                    <Box size={14} />
+                                    MÔ HÌNH VẼ CODE
+                                </button>
+                            </div>
+
+                            <button
+                                onClick={() => setViewing3DRoom(null)}
+                                className="w-10 h-10 flex items-center justify-center bg-red-50 text-red-500 hover:bg-red-500 hover:text-white rounded-xl transition-colors font-bold absolute top-5 right-5 sm:static cursor-pointer"
+                            >
+                                X
+                            </button>
+                        </div>
+
+                        {/* Nội dung vùng hiển thị 3D */}
+                        <div className="p-4 bg-black/5 dark:bg-black/20 min-h-[450px] flex flex-col justify-center">
+                            {viewMode === 'real' ? (
+                                /* Chỉ hiển thị mô hình quét thực tế rộng rãi không bị che */
+                                <Room3DViewer modelUrl={`/src/models/4_6_2026-transformed.glb`} roomData={viewing3DRoom} />
+                            ) : (
+                                /* Chỉ hiển thị mô hình canvas 4 bức tường thông minh tự vẽ bằng code */
+                                <Room3dModel />
+                            )}
+                        </div>
+
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

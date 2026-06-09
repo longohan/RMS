@@ -5,7 +5,7 @@ import { PieChart, Pie, Sector, Rectangle, Tooltip, Legend, ResponsiveContainer,
 import MasterSelect from "@/components/Atoms/Select/MasterSelect";
 import GlassDateInput from "@/components/Atoms/Select/RangeDateSelect";
 import {formatCurrency} from "@/utils/helperformat";
-// import Room3DViewer from "@/components/Organisms/Room3DViewer/Room3DViewer";
+
 
 const mockBarChartData = {
   day: [
@@ -198,19 +198,6 @@ export default function DashboardPage() {
         </div>
 
       </div>
-
-       {/* <div className="p-6 rounded-4xl bg-card-bg backdrop-blur-xl border border-card-border flex flex-col gap-4">
-        <div>
-          <h2 className="text-xl font-bold text-card-title">Mô hình Thực tế ảo (VR)</h2>
-          <p className="text-sm font-medium text-card-text">
-            Trải nghiệm không gian nội thất phòng trọ mẫu.
-          </p>
-        </div>
-        
-        <Room3DViewer modelUrl="src/models/4_6_2026.glb" />
-      </div> */}
-  
-
     </div>
   );
 }

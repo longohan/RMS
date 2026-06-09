@@ -20,8 +20,8 @@ export default function DashboardPage() {
       </div>
 
       <main className="flex-1 h-full overflow-y-auto pr-2 pt-1 flex flex-col gap-6 liquid-scrollbar text-layout-text">
-        <div className="w-full flex items-center justify-end gap-4 pt-2">
-          <Notificationbell />
+        <div className="w-full pl-1 flex items-center justify-start gap-4 pt-2">
+          <Notificationbell  />
           <ThemeSwitcher />
         </div>
         <Outlet />

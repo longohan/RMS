@@ -41,6 +41,17 @@
   --color-btn-solid: #2563eb;              /* bg-blue-600 */
   --color-btn-solid-hover: #1d4ed8;        /* hover:bg-blue-700 */
 
+/* màu Button volumetric*/
+  --color-volumetric-bg: #2563eb;        /* Nền sáng nhẹ */
+  --color-volumetric-text: #ffffff; 
+  --shadow-emboss: 
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9), /* Bắt sáng góc trên trái */
+    inset -1px -1px 2px rgba(0, 0, 0, 0.05),    /* Viền tối góc dưới phải */
+    4px 4px 10px rgba(0, 0, 0, 0.1);            /* Bóng đổ ra nền */
+  --shadow-deboss: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.15),      /* Lõm góc trên trái */
+    inset -3px -3px 6px rgba(255, 255, 255, 0.8); /* Bắt sáng dưới đáy */
+
   /* Màu Button glass */
   --color-btn-glass-bg: rgba(255, 255, 255, 0.2);    /* bg-white/20 */
   --color-btn-glass-hover: rgba(255, 255, 255, 0.3); /* hover:bg-white/30 */
@@ -158,6 +169,7 @@
   --color-service-other-bg: rgba(100, 116, 139, 0.1);          /* bg-slate-500/10 */
   --color-service-other-text: #475569;                        /* text-slate-600 */
   --color-service-other-border: rgba(100, 116, 139, 0.2);      /* border-slate-500/20 */
+
 }
 
 @layer base {
@@ -178,6 +190,23 @@
     --color-btn-glass-hover: rgba(255, 255, 255, 0.2); /* hover:bg-white/20 */
     --color-btn-glass-text: #f3f4f6;                   /* text-gray-100 */
     --color-btn-glass-border: rgba(255, 255, 255, 0.2);/* border-white/20 */
+
+/* màu Button volumetric tối */
+  --color-volumetric-bg: #2563eb;
+  --color-volumetric-text: #f8fafc;
+
+  --shadow-emboss: 
+    inset 1px 1px 1px rgba(255, 255, 255, 0.15), 
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5), 
+    4px 4px 12px rgba(0, 0, 0, 0.4);
+
+  --shadow-deboss: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.6), 
+    inset -2px -2px 6px rgba(255, 255, 255, 0.05);
+
+    /* Cấu trúc bóng đổ tối hơn để khớp với nền đen */
+    --shadow-volumetric: 0 8px 16px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.3);
+    --shadow-volumetric-active: inset 0 4px 8px rgba(0,0,0,0.5);
 
     /* Màu Button liquid */
     --color-liquid-from: rgba(59, 130, 246, 0.3);      /* from-blue-500/30 */

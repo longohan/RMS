@@ -4,7 +4,7 @@ interface Props {
     text?: string;
     onClick?: () => void;
     disabled?: boolean;
-    variant?: "solid" | "glass" | "liquidGlass";
+    variant?: "solid" | "glass" | "liquidGlass" | "volumetric" ;
     size?: "sm" | "md" | "lg";
     className?: string;
     type?: "button" | "submit" | "reset";
@@ -38,6 +38,15 @@ export default function Button({
         glass: "bg-btn-glass-bg hover:bg-btn-glass-hover text-btn-glass-text border border-btn-glass-border backdrop-blur-md",
         
         liquidGlass: "bg-gradient-to-br from-liquid-from via-liquid-via to-liquid-to hover:from-liquid-from-hover hover:via-liquid-via-hover hover:to-liquid-to-hover text-white border border-liquid-border backdrop-blur-xl shadow-lg hover:shadow-xl shadow-purple-500/20",
+        
+        volumetric: `
+                bg-[var(--color-volumetric-bg)] 
+                text-[var(--color-volumetric-text)] 
+                shadow-[var(--shadow-emboss)] 
+                border border-transparent
+                hover:brightness-105
+                active:shadow-[var(--shadow-deboss)] active:translate-y-[1px]
+            `,
     };
 
     const disabledClasses = disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer";

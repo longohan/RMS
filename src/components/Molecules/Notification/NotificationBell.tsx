@@ -24,7 +24,7 @@ export default function NotificationBell() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-3 w-72 rounded-3xl bg-card-bg backdrop-blur-xl border border-card-border shadow-2xl p-4 animate-in fade-in slide-in-from-top-4">
+        <div className="absolute mt-3 w-72 rounded-3xl bg-card-bg backdrop-blur-xl border border-card-border shadow-2xl p-4 animate-in fade-in slide-in-from-top-4">
           <h3 className="font-bold text-card-title mb-3 flex items-center justify-between">
             Thông báo 
             {count > 0 && <span className="text-[10px] bg-red-500/20 text-red-500 px-2 py-1 rounded-full  tracking-wider">Có {count} phòng quá hạn</span>}
